@@ -1,0 +1,229 @@
+my api colection link https://www.getpostman.com/collections/614afe0a0240f3bd0c6a                                                     1) Session
+POST
+URL:https://test-bankalfalah.gateway.mastercard.com/api/rest/version/56/merchant/Raja_Sahib/session
+
+Response:
+{
+    "merchant": "Raja_Sahib",
+    "result": "SUCCESS",
+    "session": {
+        "aes256Key": "1nkkTP5RZz2hustJooLF7JayNi1FRfvxAX0avsDtoKo=",
+        "authenticationLimit": 5,
+        "id": "SESSION0002760266320M44888347H0",
+        "updateStatus": "NO_UPDATE",
+        "version": "6936d70e01"
+    }
+}
+
+                                                    2) Update Session
+PUT
+
+URL:https://test-bankalfalah.gateway.mastercard.com/api/rest/version/56/merchant/Raja_Sahib/session/SESSION0002760266320M44888347H0
+Request:
+{
+    "order": {
+        "amount": 10.00,
+        "currency": "PKR"
+    }
+}
+
+Response:
+{
+    "merchant": "Raja_Sahib",
+    "order": {
+        "amount": "10.00",
+        "currency": "PKR"
+    },
+    "session": {
+        "id": "SESSION0002760266320M44888347H0",
+        "updateStatus": "SUCCESS",
+        "version": "b645b04e02"
+    },
+    "version": "56"
+}
+
+                                              3)CHECK 3D Enrollement
+PUT
+URL:https://test-bankalfalah.gateway.mastercard.com/api/rest/version/56/merchant/Raja_Sahib/3DSecureId/10009
+Request :
+{
+    "apiOperation": "CHECK_3DS_ENROLLMENT",
+    "3DSecure": {
+        "authenticationRedirect": {
+            "responseUrl": "http://www.waqasurrehman.me/waqas/index.php"
+        }
+    },
+    "order": {
+        "amount": 10.00,
+        "currency": "PKR"
+    },
+    "session": {
+        "id": "SESSION0002760266320M44888347H0"
+    }
+}
+
+Response:
+{
+    "3DSecure": {
+        "authenticationRedirect": {
+            "simple": {
+                "htmlBodyContent": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\"><html><head><title>Process Secure Payment</title><meta http-equiv=\"content-type\" content=\"text/html;charset=UTF-8\"><meta name=\"description\" content=\"Process Secure Payment\"><meta name=\"robots\" content=\"noindex\"><style type=\"text/css\">body {font-family:\"Trebuchet MS\",sans-serif; background-color: #FFFFFF; }#msg {border:5px solid #666; background-color:#fff; margin:20px; padding:25px; max-width:40em; -webkit-border-radius: 10px; -khtml-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px;}#submitButton { text-align: center ; }#footnote {font-size:0.8em;}</style></head><body onload=\"return window.document.echoForm.submit()\"><form name=\"echoForm\" method=\"POST\" action=\"https://mtf.gateway.mastercard.com/acs/VisaACS/3d1730d7-5de2-4b21-b4a2-de813951fe9b\" accept-charset=\"UTF-8\"><input type=\"hidden\" name=\"PaReq\" value=\"eAFVkc1ugkAUhfcmvgNhX+YnINRcx9gSUmM1xNpFV80ERyUR0AHUdtmn6XP1SXoHsD9s4ByYw7nfhfEl21snpcu0yEc2c6htqTwp1mm+HdnPq+gmsMei34PVTisVPqmk1krAXJWl3CorXY9sTjlnPh3YAuLJUh0FdHEC0xwO5CrxlE52Mq8EyOR4N10Il3IvYEA6CZnS01Bw2l4e3jwaAGltyGWmxFzqncxe4xmQRkNS1Hml34QXDIBcBdR6L87ns1OpsnKSIgNiHCC/FeLalClxmEu6FtWulI+nl0UY+IvNQL67EQ/rqIyyTTACYr6AtawUduMMS/kWo0PPHbJbII0PMjM9RDxbWl8fn4w6lOJcrQkH869JKxhOBeSvA8hUI/TrDFcF6nIocoWpCPHnGchv8/sHgzKpEJqLpHwkxjzfZdT06l6YlBT5mN5NjBFAzFHS7QupNOtE59+a+71viz2vBw==\"><input type=\"hidden\" name=\"TermUrl\" value=\"http://www.waqasurrehman.me/waqas/index.php\"><input type=\"hidden\" name=\"MD\" value=\"\"><noscript><div id=\"msg\"><div id=\"submitButton\"><input type=\"submit\" value=\"Click here to continue\" class=\"button\"></div></div></noscript></form></body></html>\n"
+            }
+        },
+        "veResEnrolled": "Y",
+        "xid": "thsaLvYND87Nf6az4F2DuFsFmf8="
+    },
+    "3DSecureId": "10009",
+    "merchant": "Raja_Sahib",
+    "response": {
+        "gatewayRecommendation": "PROCEED"
+    }
+}
+
+
+
+                                             4) Process ACS Result
+POST
+URL:https://test-bankalfalah.gateway.mastercard.com/api/rest/version/56/merchant/Raja_Sahib/3DSecureId/10009
+Request:
+{
+    "3DSecure": {
+        "paRes": "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"
+    },
+    "apiOperation": "PROCESS_ACS_RESULT"
+}
+
+Response:
+{
+    "3DSecure": {
+        "acsEci": "05",
+        "authenticationRedirect": {
+            "simple": {
+                "htmlBodyContent": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\"><html><head><title>Process Secure Payment</title><meta http-equiv=\"content-type\" content=\"text/html;charset=UTF-8\"><meta name=\"description\" content=\"Process Secure Payment\"><meta name=\"robots\" content=\"noindex\"><style type=\"text/css\">body {font-family:\"Trebuchet MS\",sans-serif; background-color: #FFFFFF; }#msg {border:5px solid #666; background-color:#fff; margin:20px; padding:25px; max-width:40em; -webkit-border-radius: 10px; -khtml-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px;}#submitButton { text-align: center ; }#footnote {font-size:0.8em;}</style></head><body onload=\"return window.document.echoForm.submit()\"><form name=\"echoForm\" method=\"POST\" action=\"https://mtf.gateway.mastercard.com/acs/VisaACS/3d1730d7-5de2-4b21-b4a2-de813951fe9b\" accept-charset=\"UTF-8\"><input type=\"hidden\" name=\"PaReq\" value=\"eAFVkc1ugkAUhfcmvgNhX+YnINRcx9gSUmM1xNpFV80ERyUR0AHUdtmn6XP1SXoHsD9s4ByYw7nfhfEl21snpcu0yEc2c6htqTwp1mm+HdnPq+gmsMei34PVTisVPqmk1krAXJWl3CorXY9sTjlnPh3YAuLJUh0FdHEC0xwO5CrxlE52Mq8EyOR4N10Il3IvYEA6CZnS01Bw2l4e3jwaAGltyGWmxFzqncxe4xmQRkNS1Hml34QXDIBcBdR6L87ns1OpsnKSIgNiHCC/FeLalClxmEu6FtWulI+nl0UY+IvNQL67EQ/rqIyyTTACYr6AtawUduMMS/kWo0PPHbJbII0PMjM9RDxbWl8fn4w6lOJcrQkH869JKxhOBeSvA8hUI/TrDFcF6nIocoWpCPHnGchv8/sHgzKpEJqLpHwkxjzfZdT06l6YlBT5mN5NjBFAzFHS7QupNOtE59+a+71viz2vBw==\"><input type=\"hidden\" name=\"TermUrl\" value=\"http://www.waqasurrehman.me/waqas/index.php\"><input type=\"hidden\" name=\"MD\" value=\"\"><noscript><div id=\"msg\"><div id=\"submitButton\"><input type=\"submit\" value=\"Click here to continue\" class=\"button\"></div></div></noscript></form></body></html>\n"
+            }
+        },
+        "authenticationToken": "gIGCg4SFhoeIiYqLjI2Oj5CRkpM=",
+        "paResStatus": "Y",
+        "veResEnrolled": "Y",
+        "xid": "thsaLvYND87Nf6az4F2DuFsFmf8="
+    },
+    "3DSecureId": "10009",
+    "merchant": "Raja_Sahib",
+    "response": {
+        "gatewayRecommendation": "PROCEED"
+    }
+}
+
+                                       5)PAY
+PUT
+URL:https://test-bankalfalah.gateway.mastercard.com/api/rest/version/56/merchant/Raja_Sahib/order/16111/transaction/173E2
+
+Request:
+{
+    "apiOperation": "PAY",
+    "3DSecureId": "10009",
+    "order": {
+        "amount": 10.00,
+        "currency": "PKR"
+    },
+    "session": {
+        "id": "SESSION0002760266320M44888347H0"
+    }
+}
+
+Response:
+{
+    "3DSecure": {
+        "acsEci": "05",
+        "authenticationToken": "gIGCg4SFhoeIiYqLjI2Oj5CRkpM=",
+        "paResStatus": "Y",
+        "veResEnrolled": "Y",
+        "xid": "thsaLvYND87Nf6az4F2DuFsFmf8="
+    },
+    "3DSecureId": "10009",
+    "authorizationResponse": {
+        "cardLevelIndicator": "G4",
+        "cardSecurityCodeError": "M",
+        "commercialCard": "!01",
+        "commercialCardIndicator": "0",
+        "date": "0507",
+        "posData": "1025100006600",
+        "posEntryMode": "812",
+        "processingCode": "000000",
+        "responseCode": "00",
+        "returnAci": "Y",
+        "stan": "279994",
+        "time": "110340"
+    },
+    "device": {
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36",
+        "ipAddress": "119.160.96.227"
+    },
+    "gatewayEntryPoint": "WEB_SERVICES_API",
+    "merchant": "Raja_Sahib",
+    "order": {
+        "amount": 10.00,
+        "chargeback": {
+            "amount": 0,
+            "currency": "PKR"
+        },
+        "creationTime": "2021-05-07T11:03:40.721Z",
+        "currency": "PKR",
+        "id": "16111",
+        "merchantAmount": 10.00,
+        "merchantCategoryCode": "5644",
+        "merchantCurrency": "PKR",
+        "status": "CAPTURED",
+        "totalAuthorizedAmount": 10.00,
+        "totalCapturedAmount": 10.00,
+        "totalRefundedAmount": 0.00
+    },
+    "response": {
+        "acquirerCode": "00",
+        "acquirerMessage": "Approved",
+        "cardSecurityCode": {
+            "acquirerCode": "M",
+            "gatewayCode": "MATCH"
+        },
+        "gatewayCode": "APPROVED"
+    },
+    "result": "SUCCESS",
+    "sourceOfFunds": {
+        "provided": {
+            "card": {
+                "brand": "VISA",
+                "expiry": {
+                    "month": "5",
+                    "year": "21"
+                },
+                "fundingMethod": "DEBIT",
+                "nameOnCard": "Test",
+                "number": "450875xxxxxx1019",
+                "scheme": "VISA",
+                "storedOnFile": "NOT_STORED"
+            }
+        },
+        "type": "CARD"
+    },
+    "timeOfRecord": "2021-05-07T11:03:40.787Z",
+    "transaction": {
+        "acquirer": {
+            "batch": 20210507,
+            "date": "0507",
+            "id": "BAFL_S2I",
+            "merchantId": "200000005000508",
+            "settlementDate": "2021-05-07",
+            "timeZone": "+0500"
+        },
+        "amount": 10.00,
+        "authorizationCode": "102155",
+        "currency": "PKR",
+        "id": "173E2",
+        "receipt": "112711279994",
+        "source": "INTERNET",
+        "terminal": "80520029",
+        "type": "PAYMENT"
+    },
+    "version": "56"
+}
+
